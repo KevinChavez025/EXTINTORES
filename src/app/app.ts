@@ -1,11 +1,13 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Footer } from "./Componentes/footer/footer";
+import { Header } from "./Componentes/header/header";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  imports: [Footer, Header, RouterOutlet]
 })
 export class App {
   protected readonly title = signal('Extintores');

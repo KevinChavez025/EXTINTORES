@@ -1,0 +1,58 @@
+<header class="topbar">
+  <div class="topbar__inner">
+
+    <!-- IZQUIERDA: LOGO + NOMBRE -->
+    <div class="header-left">
+      <img
+        src="extintores.jpg"
+        alt="FUMIEXTIN FIRE PERÚ"
+        class="logo"
+      >
+      <span class="company-name">FUMIEXTIN FIRE PERÚ</span>
+    </div>
+
+    <!-- CENTRO: NAVBAR -->
+    <nav class="header-center">
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        class="nav-link"
+      >
+        INICIO
+      </a>
+
+      <a
+        routerLink="/nosotros"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        NOSOTROS
+      </a>
+
+      <a
+        routerLink="/servicios"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        SERVICIOS
+      </a>
+
+      <a
+        routerLink="/productos"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        PRODUCTOS
+      </a>
+    </nav>
+
+    <!-- DERECHA: BOTÓN -->
+    <div class="header-right">
+      <a routerLink="/contacto" class="cta">
+        CONTÁCTENOS
+      </a>
+    </div>
+
+  </div>
+</header>
