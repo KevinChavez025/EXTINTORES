@@ -1,0 +1,167 @@
+<main class="home">
+
+  <!-- HERO SLIDER -->
+  <section class="hero hero--slider">
+    <div class="hero__slides" [style.transform]="'translateX(-' + (activeSlide * 100) + '%)'">
+
+      <!-- SLIDE 1 -->
+      <article class="hero__slide">
+        <img class="hero__bg" src="assets/img/hero-extintores.webp" alt="Extintores">
+        <div class="hero__overlay"></div>
+
+        <div class="hero__content">
+          <p class="hero__kicker">CERTIFICAMOS LA OPERATIVIDAD DE NUESTROS EQUIPOS</p>
+
+          <h1 class="hero__title">
+            Venta y recarga de<br>
+            <span>EXTINTORES</span>
+          </h1>
+
+          <p class="hero__desc">
+            Venta al por mayor y menor. Todo tipo de extintores y accesorios de seguridad.
+            Certificamos la operatividad y garantía de nuestros equipos.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#catalogo">VER CATÁLOGO</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- SLIDE 2 -->
+      <article class="hero__slide">
+        <img class="hero__bg" src="assets/img/hero-fumigacion.webp" alt="Fumigación">
+        <div class="hero__overlay hero__overlay--soft"></div>
+
+        <div class="hero__content">
+          <p class="hero__kicker">EMPRESA DE SANEAMIENTO AMBIENTAL AUTORIZADO</p>
+
+          <h1 class="hero__title">
+            FUMIGACIÓN<br>
+            <span>INTEGRAL</span>
+          </h1>
+
+          <ul class="hero__list">
+            <li>Limpieza y desinfección de reservorios de agua</li>
+            <li>Limpieza de campana y ductos de extracción de grasa</li>
+            <li>Limpieza de pozo séptico</li>
+          </ul>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#servicios">VER SERVICIOS</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Flechas -->
+    <button class="hero__arrow hero__arrow--left" (click)="prevSlide()">‹</button>
+    <button class="hero__arrow hero__arrow--right" (click)="nextSlide()">›</button>
+
+    <!-- Dots -->
+    <div class="hero__dots">
+      <button class="dot" [class.dot--active]="activeSlide === 0" (click)="goTo(0)"></button>
+      <button class="dot" [class.dot--active]="activeSlide === 1" (click)="goTo(1)"></button>
+    </div>
+  </section>
+
+  <!-- CATALOGO -->
+  <section id="catalogo" class="catalog">
+    <div class="container catalog__grid">
+      <div class="catalog__left">
+        <h2 class="section-title">VISITE NUESTRO CATÁLOGO</h2>
+        <p class="section-subtitle">Venta de <b>EXTINTORES</b>, y <b>DELIVERY GRATIS</b></p>
+
+        <div class="catalog__features">
+          <div class="feature">
+            <div class="feature__icon">🧯</div>
+            <div class="feature__text">Amplia gama en Extintores</div>
+          </div>
+
+          <div class="feature">
+            <div class="feature__icon">🧰</div>
+            <div class="feature__text">Botiquín de Emergencia</div>
+          </div>
+
+          <div class="feature">
+            <div class="feature__icon">⚠️</div>
+            <div class="feature__text">Señalizaciones de Seguridad</div>
+          </div>
+
+          <div class="feature">
+            <div class="feature__icon">💡</div>
+            <div class="feature__text">Luz de Emergencia, etc.</div>
+          </div>
+        </div>
+
+        <a class="btn btn--dark" href="#productos">VISITAR CATÁLOGO</a>
+      </div>
+
+      <div class="catalog__right">
+        <div class="image-card">
+          <img src="assets/img/catalogo.webp" loading="lazy" alt="Catálogo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios" class="services">
+    <img class="services__bg" src="assets/img/fumigacion-bg.webp" loading="lazy" alt="Fondo servicios" />
+    <div class="services__overlay"></div>
+
+    <div class="container services__content">
+      <h2 class="services__title">FUMIGACIÓN INTEGRAL</h2>
+
+      <div class="services__cards">
+        <article class="service-card">
+          <div class="service-card__avatar">
+            <img src="assets/img/desinfeccion.webp" loading="lazy" alt="Desinfección" />
+          </div>
+          <h3>Desinfección</h3>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__avatar">
+            <img src="assets/img/desinsectacion.webp" loading="lazy" alt="Desinsectación" />
+          </div>
+          <h3>Desinsectación</h3>
+        </article>
+
+        <article class="service-card">
+          <div class="service-card__avatar">
+            <img src="assets/img/desratizacion.webp" loading="lazy" alt="Desratización" />
+          </div>
+          <h3>Desratización</h3>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contact">
+    <div class="container contact__wrap">
+      <h2 class="section-title">ENVÍENOS UN MENSAJE</h2>
+      <p class="section-subtitle">Responderemos a su mensaje lo antes posible.</p>
+
+      <form class="contact__form">
+        <div class="row">
+          <input type="text" placeholder="Nombre" />
+          <input type="email" placeholder="Correo" />
+        </div>
+
+        <div class="row">
+          <input type="tel" placeholder="Teléfono" class="full" />
+        </div>
+
+        <div class="row">
+          <textarea placeholder="Mensaje"></textarea>
+        </div>
+
+        <button type="button" class="btn btn--dark">ENVIAR</button>
+      </form>
+    </div>
+  </section>
+
+</main>
