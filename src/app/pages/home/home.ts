@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
+export class HomeComponent {
   activeSlide = 0;
   private intervalId: any;
 
