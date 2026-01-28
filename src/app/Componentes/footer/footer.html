@@ -1,1 +1,82 @@
-<p>footer works!</p>
+<footer class="footer">
+  <div class="footer__inner">
+
+    <!-- COLUMNA 1: LOGO + TEXTO -->
+    <section class="footer__col footer__brand">
+
+      <div class="brand">
+        <!-- BLOQUE IZQUIERDO (IMAGEN ALTA) -->
+        <div class="brand__logoBox">
+          <img
+            class="brand__logo"
+            src="extintores.jpg"
+            alt="FUMIEXTIN FIRE PERÚ"
+          >
+        </div>
+
+        <!-- TEXTO -->
+        <div class="brand__text">
+          <h3 class="brand__name">FUMIEXTIN FIRE PERÚ</h3>
+          <p class="brand__tagline">
+            Empresa de Saneamiento Ambiental y Prevención de Incendios
+          </p>
+
+          <p class="brand__ruc"><b>RUC:</b> 20XXXXXXXXX</p>
+
+          <p class="brand__desc">
+            Venta y recarga de extintores, fumigación integral y servicios de seguridad.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <div class="footer__divider"></div>
+
+    <!-- COLUMNA 2: CONTACTO -->
+    <section class="footer__col">
+      <h4 class="footer__title">DATOS DE CONTACTO</h4>
+
+      <ul class="contact-list">
+        <li class="contact-item">
+          <span class="icon">☎</span>
+          <span>+51 9XX XXX XXX</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="icon">📱</span>
+          <span>+51 9XX XXX XXX / +51 9XX XXX XXX</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="icon">✉</span>
+          <span>contacto@fumixtin.com</span>
+        </li>
+
+        <li class="contact-item">
+          <span class="icon">📍</span>
+          <span>Dirección de la empresa – Perú</span>
+        </li>
+      </ul>
+    </section>
+
+    <div class="footer__divider"></div>
+
+    <!-- COLUMNA 3: REDES -->
+    <section class="footer__col"> <h4 class="footer__title">REDES SOCIALES</h4> 
+    <div class="social"> 
+    <button type="button" class="social__btn fb" (click)="openFacebook()" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i> </button>
+    <button type="button" class="social__btn ig" (click)="openInstagram()" aria-label="Instagram"><i class="fa-brands fa-instagram"></i> </button> 
+    <button type="button" class="social__btn wa" (click)="openWhatsApp()" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i> </button> 
+    </div> 
+    </section>
+
+  </div>
+
+  <!-- BARRA NEGRA -->
+  <div class="footer__bottom">
+    <p>
+      Copyright © 2026. Todos los derechos reservados FUMIEXTIN FIRE PERÚ.
+    </p>
+  </div>
+</footer>
