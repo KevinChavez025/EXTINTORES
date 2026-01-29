@@ -571,7 +571,7 @@ export class ProductoDetalleComponent implements OnInit {
   }
 
   realizarPedido() {
-    const numero = '51999999999'; // CAMBIA ESTO POR TU NÚMERO DE WHATSAPP
+    const numero = '51933444277'; // CAMBIA ESTO POR TU NÚMERO DE WHATSAPP
     const mensaje = `Hola, quiero consultar sobre: ${this.producto?.nombre}`;
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
     window.open(url, '_blank');
