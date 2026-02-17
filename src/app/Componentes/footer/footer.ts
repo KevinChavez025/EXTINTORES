@@ -17,7 +17,6 @@ export class Footer {
   }
 
   openWhatsApp() {
-    // Cambia el número y el mensaje cuando quieras
     const phone = '51933444277';
     const msg = encodeURIComponent('Hola, quisiera información sobre sus servicios.');
     window.open(`https://wa.me/${phone}?text=${msg}`, '_blank', 'noopener,noreferrer');

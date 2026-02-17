@@ -1,13 +1,12 @@
 <footer class="footer">
   <div class="footer__inner">
 
-    <!-- COLUMNA 1: LOGO + TEXTO -->
     <section class="footer__col footer__brand">
       <div class="brand">
         <div class="brand__logoBox">
           <img
             class="brand__logo"
-            src="extintores.jpg"
+            src="assets/logo.jpg" 
             alt="FUMIEXTIN FIRE PERÚ"
           >
         </div>
@@ -27,14 +26,13 @@
 
     <div class="footer__divider"></div>
 
-    <!-- COLUMNA 2: CONTACTO -->
     <section class="footer__col">
       <h4 class="footer__title">DATOS DE CONTACTO</h4>
 
       <ul class="contact-list">
         <li class="contact-item">
           <i class="fa-solid fa-phone"></i>
-          <span>+51 9XX XXX XXX</span>
+          <span>+51 933 444 277</span>
         </li>
 
         <li class="contact-item">
@@ -51,20 +49,19 @@
 
     <div class="footer__divider"></div>
 
-    <!-- COLUMNA 3: REDES -->
     <section class="footer__col">
       <h4 class="footer__title">REDES SOCIALES</h4>
 
       <div class="social">
-        <button type="button" class="social__btn fb" aria-label="Facebook">
+        <button type="button" class="social__btn fb" aria-label="Facebook" (click)="openFacebook()">
           <i class="fa-brands fa-facebook-f"></i>
         </button>
 
-        <button type="button" class="social__btn ig" aria-label="Instagram">
+        <button type="button" class="social__btn ig" aria-label="Instagram" (click)="openInstagram()">
           <i class="fa-brands fa-instagram"></i>
         </button>
 
-        <button type="button" class="social__btn wa" aria-label="WhatsApp">
+        <button type="button" class="social__btn wa" aria-label="WhatsApp" (click)="openWhatsApp()">
           <i class="fa-brands fa-whatsapp"></i>
         </button>
       </div>
@@ -72,7 +69,6 @@
 
   </div>
 
-  <!-- BARRA INFERIOR -->
   <div class="footer__bottom">
     <p>
       Copyright © 2026. Todos los derechos reservados FUMIEXTIN FIRE PERÚ.
