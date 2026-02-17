@@ -1,0 +1,103 @@
+/* Contenedor Principal */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 80px;
+  margin-top: 20px;
+}
+
+/* Sección Superior */
+.info-section {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  margin-bottom: 60px;
+  align-items: start;
+}
+
+.main-title { color: #1a3a5a; font-size: 2.5rem; margin-bottom: 10px; }
+.subtitle { font-weight: bold; font-size: 1.1rem; color: #333; margin-bottom: 20px; }
+.check-list { list-style: none; padding: 0; font-weight: bold; }
+.check-list li { margin: 8px 0; font-size: 1.1rem; }
+
+/* Imagen Superior y Botón */
+.main-image-box {
+  width: 100%;
+  height: 280px;
+  background-color: #e0e0e0;
+  border-radius: 10px; /* Bordes redondeados de la imagen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+}
+
+.btn-whatsapp {
+  background-color: #70e070; /* Verde claro de tu imagen */
+  color: white;
+  border: none;
+  padding: 12px 0;
+  width: 55%; /* Ancho ajustado como en la foto */
+  margin: 20px auto 0;
+  display: block;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.btn-whatsapp:hover { transform: scale(1.05); background-color: #5cb85c; }
+
+/* Tarjetas con Efecto Hover */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 10px;
+  background: #fff;
+  transition: all 0.3s ease; /* Transición suave para el sombreado */
+}
+
+/* EL EFECTO DE SOMBREADO QUE PEDISTE */
+.service-card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra al pasar el cursor */
+  transform: translateY(-5px); /* Se eleva un poquito */
+  border-color: #d1d1d1;
+}
+
+.inner-border {
+  border: 1px solid #f0f0f0; /* Borde interno sutil */
+  border-radius: 8px;
+  height: 100%;
+}
+
+.img-container {
+  background-color: #ededed;
+  height: 180px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+}
+
+.card-text { padding: 15px; text-align: center; }
+
+.card-text h3 {
+  color: #e69138; /* Naranja exacto */
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.card-text p { color: #777; font-size: 0.9rem; line-height: 1.3; }

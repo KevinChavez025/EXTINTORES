@@ -1,1 +1,46 @@
-<p>productos works!</p>
+
+=======
+<div class="productos-container">
+  <div class="header">
+    <h1>PRODUCTOS</h1>
+    <p class="subtitle">REVISE NUESTRA AMPLIA GAMA DE PRODUCTOS</p>
+  </div>
+
+  <div class="productos-grid">
+    <div class="producto-card" *ngFor="let producto of productosVisibles">
+      <div class="producto-imagen">
+        <span class="emoji-imagen">{{ producto.imagen }}</span>
+      </div>
+      
+      <h3 class="producto-nombre">{{ producto.nombre }}</h3>
+      
+      <div class="estrellas">
+        <span class="estrella" *ngFor="let estrella of getEstrellas(producto.estrellas)">⭐</span>
+      </div>
+      
+      <div class="stock" *ngIf="producto.enStock">
+        <span class="check-icon">✓</span> En Stock
+      </div>
+      
+      <button class="btn-ver-producto" (click)="verProducto(producto.id)">
+        <span class="btn-icon">👁</span> VER PRODUCTO
+      </button>
+    </div>
+  </div>
+
+  <div class="botones-navegacion">
+    <button 
+      class="btn-ver-mas" 
+      *ngIf="hayMasProductos"
+      (click)="verMas()">
+      VER MÁS
+    </button>
+    
+    <button 
+      class="btn-mostrar-menos" 
+      *ngIf="sePuedeMostrarMenos"
+      (click)="mostrarMenos()">
+      MOSTRAR MENOS
+    </button>
+  </div>
+</div>

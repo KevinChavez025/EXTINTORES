@@ -7,10 +7,11 @@ import { Productos } from './pages/productos/productos';
 import { Contacto } from './pages/contacto/contacto';
 
 export const routes: Routes = [
+  { path: '', component: Home },
   { path: 'home', component: Home },
   { path: 'nosotros', component: Nosotros},
   { path: 'servicios', component: Servicios},
   { path: 'productos', component: Productos },
   { path: 'contacto', component: Contacto },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }, 
-]
+  { path: '**', redirectTo: '', pathMatch: 'full' }
+];

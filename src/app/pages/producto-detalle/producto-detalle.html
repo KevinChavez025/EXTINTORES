@@ -1,0 +1,57 @@
+<div class="producto-detalle-page">
+  <div *ngIf="producto; else errorTemplate" class="producto-contenedor">
+    
+    <!-- COLUMNA IZQUIERDA: IMAGEN -->
+    <div class="producto-imagen-col">
+      <div class="imagen-box">
+        <div class="imagen-wrapper">
+          <div class="placeholder-imagen">
+            <span class="emoji-temporal">{{ producto.imagen }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUMNA DERECHA: INFORMACIÓN -->
+    <div class="producto-info-col">
+      <h1 class="titulo-producto">{{ producto.nombre }}</h1>
+      
+      <div class="estrellas-producto">
+        <span class="estrella" *ngFor="let star of getEstrellas(producto.estrellas)">⭐</span>
+      </div>
+
+      <div class="descripcion-box">
+        <h3>Descripción</h3>
+        <p>{{ producto.descripcion }}</p>
+      </div>
+
+      <div class="variantes-box" *ngIf="producto.variantes && producto.variantes.length > 0">
+        <h3>Variantes disponibles:</h3>
+        <ul class="lista-variantes">
+          <li *ngFor="let variante of producto.variantes">{{ variante }}</li>
+        </ul>
+      </div>
+
+      <button class="btn-whatsapp-pedido" (click)="realizarPedido()">
+        <span class="icono-wa">📱</span>
+        REALIZAR PEDIDO POR WHATSAPP
+      </button>
+
+      <button class="btn-volver-productos" (click)="volver()">
+        ← VOLVER A PRODUCTOS
+      </button>
+    </div>
+
+  </div>
+
+  <!-- TEMPLATE DE ERROR -->
+  <ng-template #errorTemplate>
+    <div class="error-producto">
+      <h2>😕 Producto no encontrado</h2>
+      <p>Lo sentimos, el producto que buscas no está disponible.</p>
+      <button class="btn-volver-error" (click)="volver()">
+        VOLVER A PRODUCTOS
+      </button>
+    </div>
+  </ng-template>
+</div>

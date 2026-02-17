@@ -1,1 +1,44 @@
-<p>servicios works!</p>
+
+<div class="main-container">
+  <section class="info-section">
+    <div class="text-content">
+      <h1 class="main-title">FUMIGACIÓN INTEGRAL</h1>
+      <p class="subtitle">Eliminación eficaz de plagas no deseadas de su hogar o empresa</p>
+      <p>Utiliza repelentes naturales de plagas, que es una forma segura de proteger su negocio o su casa y su familia.</p>
+      <p>No hay nada peor que una infestación de plagas. Ya sea que las plagas no deseadas estén afectando su negocio o perturben su hogar, el problema debe detenerse.</p>
+      
+      <ul class="check-list">
+        <li>> Desinfección</li>
+        <li>> Desinsectación</li>
+        <li>> Desratización</li>
+      </ul>
+    </div>
+
+    <div class="visual-content">
+      <div class="main-image-box">
+        <div class="placeholder-bg">Imagen Principal</div>
+      </div>
+      <button class="btn-whatsapp" (click)="openWhatsApp()">
+        <i class="fab fa-whatsapp"></i> SOLICITAR SERVICIO
+      </button>
+    </div>
+  </section>
+
+  <div class="grid-container">
+    @for (s of servicios; track s.titulo) {
+      <div class="service-card">
+        <div class="inner-border">
+          <div class="img-container">
+            @if (s.img) { <img [src]="s.img"> } 
+            @else { <div class="gray-box">Imagen</div> }
+          </div>
+          <div class="card-text">
+            <h3>{{ s.titulo }}</h3>
+            <p>{{ s.desc }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+

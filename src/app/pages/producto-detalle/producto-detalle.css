@@ -1,0 +1,366 @@
+.producto-detalle-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 60px 40px 80px;
+  background: #fff;
+}
+
+.producto-contenedor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.producto-imagen-col {
+  position: sticky;
+  top: 120px;
+}
+
+.imagen-box {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8edf2 100%);
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 550px;
+  border: 1px solid #f0f0f0;
+}
+
+.btn-zoom {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-zoom:hover {
+  background: #f8f9fa;
+  border-color: #f6a400;
+  transform: scale(1.1);
+}
+
+.imagen-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.placeholder-imagen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 40px;
+  background: transparent;
+  text-align: center;
+}
+
+.emoji-temporal {
+  font-size: 180px;
+  display: block;
+  margin-bottom: 20px;
+  animation: flotar 3s ease-in-out infinite;
+}
+
+.texto-placeholder {
+  font-size: 16px;
+  color: #999;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes flotar {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.producto-info-col {
+  padding-top: 20px;
+}
+
+.titulo-producto {
+  font-size: 42px;
+  font-weight: 800;
+  color: #222;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.estrellas-producto {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 30px;
+}
+
+.estrella {
+  font-size: 28px;
+}
+
+.descripcion-box {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 30px;
+  border-left: 4px solid #f6a400;
+}
+
+.descripcion-box h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.descripcion-box p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.variantes-box {
+  background: linear-gradient(135deg, #fff8f0 0%, #ffffff 100%);
+  border-left: 5px solid #f6a400;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.variantes-box h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.lista-variantes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.lista-variantes li {
+  font-size: 17px;
+  color: #444;
+  padding: 12px 0;
+  font-weight: 600;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.lista-variantes li:last-child {
+  border-bottom: none;
+}
+
+.lista-variantes li::before {
+  content: '• ';
+  color: #f6a400;
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.btn-whatsapp-pedido {
+  background: linear-gradient(135deg, #25d366 0%, #20ba5a 100%);
+  color: white;
+  border: none;
+  padding: 22px 0;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}
+
+.btn-whatsapp-pedido:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(37, 211, 102, 0.45);
+  background: linear-gradient(135deg, #20ba5a 0%, #1fa854 100%);
+}
+
+.icono-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icono-wa svg {
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.btn-volver-productos {
+  background: #fff;
+  color: #555;
+  border: 2px solid #ddd;
+  padding: 16px 0;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-volver-productos:hover {
+  background: #f6a400;
+  border-color: #f6a400;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.error-producto {
+  text-align: center;
+  padding: 150px 20px;
+}
+
+.error-producto h2 {
+  font-size: 36px;
+  color: #e74c3c;
+  margin-bottom: 15px;
+}
+
+.error-producto p {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.btn-volver-error {
+  background: #f6a400;
+  color: white;
+  border: none;
+  padding: 18px 45px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-volver-error:hover {
+  background: #e09400;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(246, 164, 0, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .producto-contenedor {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .producto-imagen-col {
+    position: relative;
+    top: 0;
+  }
+
+  .titulo-producto {
+    font-size: 36px;
+  }
+
+  .emoji-temporal {
+    font-size: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .producto-detalle-page {
+    padding: 40px 20px 60px;
+  }
+
+  .titulo-producto {
+    font-size: 28px;
+  }
+
+  .emoji-temporal {
+    font-size: 120px;
+  }
+
+  .imagen-box {
+    min-height: 400px;
+    padding: 40px;
+  }
+
+  .variantes-box,
+  .descripcion-box {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .titulo-producto {
+    font-size: 24px;
+  }
+
+  .emoji-temporal {
+    font-size: 80px;
+  }
+
+  .imagen-box {
+    min-height: 300px;
+    padding: 30px;
+  }
+
+  .btn-whatsapp-pedido {
+    padding: 18px 0;
+    font-size: 15px;
+  }
+
+  .estrella {
+    font-size: 22px;
+  }
+
+  .placeholder-imagen {
+    padding: 20px;
+  }
+
+  .texto-placeholder {
+    font-size: 12px;
+  }
+}

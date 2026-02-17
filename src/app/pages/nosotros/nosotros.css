@@ -1,0 +1,98 @@
+/* ===== BANNER ===== */
+.banner-nosotros {
+  position: relative;
+  height: 280px;
+  background: url("/BannerNosotros.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-nosotros .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.banner-content {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.banner-content h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.banner-content p {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.banner-content span {
+  color: #f28c0f;
+}
+
+/* ===== CONTENIDO ===== */
+.nosotros-container {
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 30px;
+  display: flex;
+  gap: 120px;
+  align-items: flex-start;
+  margin-bottom: 10%;
+}
+
+.nosotros-texto {
+  flex: 2;
+  margin-right: 20px;
+}
+
+.nosotros-texto small {
+  color: #f28c0f;
+  font-size: 18px;
+  font-weight:bold 
+}
+
+.nosotros-texto h2 {
+  font-size: 40px;
+  margin: 15px 0 25px;
+  color: #0a2540;
+}
+
+.nosotros-texto p {
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+/* ===== CAJA NARANJA ===== */
+.nosotros-box {
+  flex: 1.5;
+  background: #f28c0f;
+  color: white;
+  padding: 28px;
+  padding-left: 50px;
+  font-weight: bold;
+}
+
+.nosotros-box h3 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.nosotros-box p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .nosotros-container {
+    flex-direction: column;
+  }
+}
