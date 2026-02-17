@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class ServiciosComponent {
   servicios = [
-    { titulo: 'FUMIGACIÓN INTEGRAL', desc: 'Eliminación de Plagas y Microorganismos Patógenos', img: '' },
+    { titulo: 'FUMIGACIÓN INTEGRAL', desc: 'Eliminación de Plagas y Microorganismos Patógenos', img: 'fumiservicios.webp' },
     { titulo: 'DESINFECCIÓN', desc: 'Eliminación de Virus, Bacterias, Gérmenes y otros', img: '' },
     { titulo: 'DESINSECTACIÓN', desc: 'Eliminación de Insectos rastreros y voladores', img: '' },
     { titulo: 'DESRATIZACIÓN', desc: 'Eliminación de Roedores', img: '' },

@@ -15,7 +15,11 @@
 
     <div class="visual-content">
       <div class="main-image-box">
-        <div class="placeholder-bg">Imagen Principal</div>
+        @if (servicios[0].img) {
+          <img [src]="servicios[0].img" class="img-fit" alt="Imagen Principal">
+        } @else {
+          <div class="placeholder-bg">Imagen Principal</div>
+        }
       </div>
       <button class="btn-whatsapp" (click)="openWhatsApp()">
         <i class="fab fa-whatsapp"></i> SOLICITAR SERVICIO
@@ -28,8 +32,12 @@
       <div class="service-card">
         <div class="inner-border">
           <div class="img-container">
-            @if (s.img) { <img [src]="s.img"> } 
-            @else { <div class="gray-box">Imagen</div> }
+            @if (s.img) { 
+              <img [src]="s.img" class="img-fit" [alt]="s.titulo"> 
+            } 
+            @else { 
+              <div class="gray-box">Imagen</div> 
+            }
           </div>
           <div class="card-text">
             <h3>{{ s.titulo }}</h3>

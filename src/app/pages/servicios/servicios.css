@@ -90,6 +90,19 @@
   color: #999;
 }
 
+.img-fit {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  display: block;
+}
+
+.main-image-box, .img-container {
+  overflow: hidden; 
+  position: relative;
+  background-color: #e0e0e0; 
+}
+
 .card-text { padding: 15px; text-align: center; }
 
 .card-text h3 {

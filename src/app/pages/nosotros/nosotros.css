@@ -2,7 +2,7 @@
 .banner-nosotros {
   position: relative;
   height: 280px;
-  background: url("/BannerNosotros.jpg") center/cover no-repeat;
+  background: url("/BannerNosotros.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
