@@ -1,70 +1,57 @@
-<div class="detalle-container" *ngIf="producto">
-  <div class="header">
-    <div class="logo">
-      <span class="logo-icon">🔥</span>
-      <span class="logo-text">FUMIEXTINTORES JR</span>
-    </div>
-
-    <nav class="navegacion">
-      <a (click)="volver()" class="nav-link" style="cursor: pointer;">INICIO</a>
-      <a class="nav-link">NOSOTROS</a>
-      <a class="nav-link">SERVICIOS</a>
-      <a (click)="volver()" class="nav-link active" style="cursor: pointer;">PRODUCTOS</a>
-    </nav>
-
-    <button class="btn-contacto" (click)="realizarPedido()">CONTÁCTENOS</button>
-  </div>
-
-  <div class="contenido">
-    <div class="imagen-section">
-      <div class="imagen-principal">
-        <span class="emoji-grande">{{ producto.imagen }}</span>
-        <button class="btn-zoom">🔍</button>
-      </div>
-
-      <div class="imagenes-mini">
-        <div class="mini-imagen active">
-          <span>{{ producto.imagen }}</span>
-        </div>
-        <div class="mini-imagen">
-          <span>{{ producto.imagen }}</span>
+<div class="producto-detalle-page">
+  <div *ngIf="producto; else errorTemplate" class="producto-contenedor">
+    
+    <!-- COLUMNA IZQUIERDA: IMAGEN -->
+    <div class="producto-imagen-col">
+      <div class="imagen-box">
+        <div class="imagen-wrapper">
+          <div class="placeholder-imagen">
+            <span class="emoji-temporal">{{ producto.imagen }}</span>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="info-section">
-      <h1 class="producto-titulo">{{ producto.nombre }}</h1>
+    <!-- COLUMNA DERECHA: INFORMACIÓN -->
+    <div class="producto-info-col">
+      <h1 class="titulo-producto">{{ producto.nombre }}</h1>
       
-      <div class="estrellas">
-        <span class="estrella" *ngFor="let estrella of getEstrellas(producto.estrellas)">⭐</span>
+      <div class="estrellas-producto">
+        <span class="estrella" *ngFor="let star of getEstrellas(producto.estrellas)">⭐</span>
       </div>
 
-      <div class="descripcion">
+      <div class="descripcion-box">
         <h3>Descripción</h3>
         <p>{{ producto.descripcion }}</p>
       </div>
 
-      <div class="variantes">
+      <div class="variantes-box" *ngIf="producto.variantes && producto.variantes.length > 0">
         <h3>Variantes disponibles:</h3>
-        <ul>
+        <ul class="lista-variantes">
           <li *ngFor="let variante of producto.variantes">{{ variante }}</li>
         </ul>
       </div>
 
-      <button class="btn-whatsapp" (click)="realizarPedido()">
-        <span class="whatsapp-icon">💬</span>
+      <button class="btn-whatsapp-pedido" (click)="realizarPedido()">
+        <span class="icono-wa">📱</span>
         REALIZAR PEDIDO POR WHATSAPP
       </button>
+
+      <button class="btn-volver-productos" (click)="volver()">
+        ← VOLVER A PRODUCTOS
+      </button>
     </div>
+
   </div>
 
-  <div class="acciones-footer">
-    <button class="btn-volver" (click)="volver()">← VOLVER A PRODUCTOS</button>
-  </div>
-</div>
-
-<div class="no-encontrado" *ngIf="!producto">
-  <h2>❌ Producto no encontrado</h2>
-  <p>El producto que buscas no existe.</p>
-  <button class="btn-volver" (click)="volver()">← VOLVER A PRODUCTOS</button>
+  <!-- TEMPLATE DE ERROR -->
+  <ng-template #errorTemplate>
+    <div class="error-producto">
+      <h2>😕 Producto no encontrado</h2>
+      <p>Lo sentimos, el producto que buscas no está disponible.</p>
+      <button class="btn-volver-error" (click)="volver()">
+        VOLVER A PRODUCTOS
+      </button>
+    </div>
+  </ng-template>
 </div>
