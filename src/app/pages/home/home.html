@@ -1,51 +1,42 @@
 <main class="home">
-  <!-- HERO SLIDER -->
   <section class="hero hero--slider">
     <div class="hero__slides" [style.transform]="'translateX(-' + (activeSlide * 100) + '%)'">
 
-      <!-- SLIDE 1 -->
       <article class="hero__slide">
         <img class="hero__bg" src="assets/Inicio/herosection.webp" alt="Extintores">
         <div class="hero__overlay"></div>
 
-        <div class="hero__content">
+        <div class="hero__content" *ngIf="activeSlide === 0">
           <p class="hero__kicker">CERTIFICAMOS LA OPERATIVIDAD DE NUESTROS EQUIPOS</p>
-
           <h1 class="hero__title">
             Venta y recarga de<br>
             <span>EXTINTORES</span>
           </h1>
-
           <p class="hero__desc">
             Venta al por mayor y menor. Todo tipo de extintores y accesorios de seguridad.
             Certificamos la operatividad y garantía de nuestros equipos.
           </p>
-
           <div class="hero__actions">
             <a class="btn btn--primary" href="#catalogo">VER CATÁLOGO</a>
           </div>
         </div>
       </article>
 
-      <!-- SLIDE 2 -->
       <article class="hero__slide">
         <img class="hero__bg" src="assets/Inicio/herosection2.webp" alt="Fumigación">
         <div class="hero__overlay hero__overlay--soft"></div>
 
-        <div class="hero__content">
+        <div class="hero__content" *ngIf="activeSlide === 1">
           <p class="hero__kicker">EMPRESA DE SANEAMIENTO AMBIENTAL AUTORIZADO</p>
-
           <h1 class="hero__title">
             FUMIGACIÓN<br>
             <span>INTEGRAL</span>
           </h1>
-
           <ul class="hero__list">
             <li>Limpieza y desinfección de reservorios de agua</li>
             <li>Limpieza de campana y ductos de extracción de grasa</li>
             <li>Limpieza de pozo séptico</li>
           </ul>
-
           <div class="hero__actions">
             <a class="btn btn--primary" href="#servicios">VER SERVICIOS</a>
           </div>
@@ -54,11 +45,9 @@
 
     </div>
 
-    <!-- Flechas -->
     <button class="hero__arrow hero__arrow--left" (click)="prevSlide()">‹</button>
     <button class="hero__arrow hero__arrow--right" (click)="nextSlide()">›</button>
 
-    <!-- Dots -->
     <div class="hero__dots">
       <button class="dot" [class.dot--active]="activeSlide === 0" (click)="goTo(0)"></button>
       <button class="dot" [class.dot--active]="activeSlide === 1" (click)="goTo(1)"></button>

@@ -3,6 +3,18 @@
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
+/* --- ANIMACIONES DE HOVER Y ESTADO (Sin ocultar elementos) --- */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* --- ESTRUCTURA GENERAL --- */
 .container {
   width: min(1100px, 92%);
   margin: 0 auto;
@@ -20,6 +32,7 @@
   color: #6a7680;
 }
 
+/* --- BOTONES --- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -32,6 +45,14 @@
   border: 2px solid transparent;
   cursor: pointer;
   user-select: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .btn--primary {
@@ -40,12 +61,22 @@
   border-color: #fff;
 }
 
+.btn--primary:hover {
+  background: #f6a400;
+  border-color: #f6a400;
+}
+
 .btn--dark {
   background: #111;
   color: #f6a400;
 }
 
-/* HERO SLIDER */
+.btn--dark:hover {
+  background: #f6a400;
+  color: #111;
+}
+
+/* --- HERO SLIDER --- */
 .hero--slider {
   position: relative;
   height: 75vh;
@@ -56,7 +87,7 @@
 .hero__slides {
   height: 100%;
   display: flex;
-  transition: transform .6s ease;
+  transition: transform .6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero__slide {
@@ -71,18 +102,17 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: translateZ(0);
-  will-change: transform;
+  transition: transform 0.5s ease-out;
+}
+
+.hero__slide:hover .hero__bg {
+  transform: scale(1.05);
 }
 
 .hero__overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(0,0,0,.68), rgba(0,0,0,.30), rgba(0,0,0,.10));
-}
-
-.hero__overlay--soft {
-  background: linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.25), rgba(0,0,0,.10));
 }
 
 .hero__content {
@@ -98,13 +128,6 @@
   color: #fff;
 }
 
-.hero__kicker {
-  font-size: 12px;
-  letter-spacing: 1px;
-  opacity: .9;
-  margin: 0;
-}
-
 .hero__title {
   margin: 0;
   line-height: 1.05;
@@ -115,26 +138,11 @@
 .hero__title span {
   color: #f6a400;
   text-shadow: 0 6px 20px rgba(0,0,0,.35);
+  display: inline-block;
+  animation: pulse 2s ease-in-out infinite;
 }
 
-.hero__desc {
-  margin: 0;
-  max-width: 680px;
-  opacity: .95;
-}
-
-.hero__list {
-  margin: 0;
-  padding-left: 18px;
-  max-width: 680px;
-  opacity: .95;
-}
-
-.hero__list li {
-  margin: 6px 0;
-}
-
-/* Flechas */
+/* Flechas Hero */
 .hero__arrow {
   position: absolute;
   top: 50%;
@@ -146,39 +154,21 @@
   background: rgba(0,0,0,.35);
   color: #fff;
   font-size: 28px;
-  line-height: 1;
   cursor: pointer;
   z-index: 3;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.hero__arrow:hover {
+  background: rgba(246, 164, 0, 0.9);
+  border-color: #f6a400;
 }
 
 .hero__arrow--left { left: 16px; }
 .hero__arrow--right { right: 16px; }
 
-/* Dots */
-.hero__dots {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 16px;
-  display: flex;
-  gap: 10px;
-  z-index: 3;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.55);
-  background: rgba(255,255,255,.25);
-  cursor: pointer;
-}
-
-.dot--active {
-  background: #fff;
-}
-
-/* CATALOGO */
+/* --- CATALOGO --- */
 .catalog {
   padding: 70px 0;
   background: #fff;
@@ -203,6 +193,12 @@
   gap: 10px;
   align-items: center;
   color: #3e4a55;
+  transition: all 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateX(5px);
+  color: #f6a400;
 }
 
 .feature__icon {
@@ -213,12 +209,24 @@
   display: grid;
   place-items: center;
   font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.feature:hover .feature__icon {
+  background: #f6a400;
+  transform: rotate(360deg);
 }
 
 .image-card {
   border-radius: 26px;
   overflow: hidden;
   box-shadow: 0 18px 40px rgba(0,0,0,.12);
+  transition: all 0.4s ease;
+}
+
+.image-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,.18);
 }
 
 .image-card img {
@@ -226,9 +234,14 @@
   height: 420px;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s ease;
 }
 
-/* SERVICES */
+.image-card:hover img {
+  transform: scale(1.1);
+}
+
+/* --- SERVICES --- */
 .services {
   position: relative;
   padding: 80px 0;
@@ -256,12 +269,6 @@
   color: #fff;
 }
 
-.services__title {
-  margin: 0 0 28px;
-  font-size: clamp(26px, 3.5vw, 48px);
-  letter-spacing: 1px;
-}
-
 .services__cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -276,6 +283,13 @@
   border: 1px solid rgba(255,255,255,.18);
   background: rgba(255,255,255,.08);
   backdrop-filter: blur(6px);
+  transition: all 0.4s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255,255,255,.15);
+  border-color: #f6a400;
 }
 
 .service-card__avatar {
@@ -285,6 +299,12 @@
   overflow: hidden;
   margin: 0 auto 12px;
   border: 3px solid rgba(255,255,255,.35);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-card__avatar {
+  border-color: #f6a400;
+  transform: scale(1.1) rotate(5deg);
 }
 
 .service-card__avatar img {
@@ -293,20 +313,10 @@
   object-fit: cover;
 }
 
-.service-card h3 {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-/* CONTACT */
+/* --- CONTACT --- */
 .contact {
   padding: 80px 0;
   background: #fff;
-}
-
-.contact__wrap {
-  text-align: center;
 }
 
 .contact__form {
@@ -322,29 +332,75 @@
   gap: 14px;
 }
 
-.row .full {
-  grid-column: 1 / -1;
-}
+.row .full { grid-column: 1 / -1; }
 
 input, textarea {
   width: 100%;
   padding: 14px 16px;
   border-radius: 10px;
   border: 1px solid #e6e8ec;
-  outline: none;
   background: #f5f6f8;
+  transition: all 0.3s ease;
 }
 
-textarea {
-  min-height: 140px;
-  resize: vertical;
+input:focus, textarea:focus {
+  border-color: #f6a400;
+  background: #fff;
+  outline: none;
 }
 
-/* Responsive */
+/* --- RESPONSIVE --- */
 @media (max-width: 900px) {
   .catalog__grid { grid-template-columns: 1fr; }
   .image-card img { height: 320px; }
   .services__cards { grid-template-columns: 1fr; }
   .row { grid-template-columns: 1fr; }
   .hero__arrow { display: none; }
+}
+
+/* --- ANIMACIÓN VERTICAL HERO --- */
+@keyframes slideFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-60px); /* Viene de arriba */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* --- ANIMACIÓN VERTICAL HERO --- */
+@keyframes slideFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-60px); /* Viene de arriba */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Aplicamos la animación a los hijos del contenido */
+.hero__content > * {
+  opacity: 0; /* Estado inicial para que no parpadee */
+  animation: slideFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Escalonamiento (Stagger) de los elementos */
+.hero__kicker  { animation-delay: 0.1s; }
+.hero__title   { animation-delay: 0.3s; }
+.hero__desc, .hero__list { animation-delay: 0.5s; }
+.hero__actions { animation-delay: 0.7s; }
+
+/* Transición suave para el contenedor del slider */
+.hero__slides {
+  display: flex;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Evita que el overflow rompa la sección */
+.hero--slider {
+  position: relative;
+  overflow: hidden;
 }
