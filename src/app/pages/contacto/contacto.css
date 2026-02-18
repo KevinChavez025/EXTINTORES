@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: url("/BannerContacto.webp") center/cover no-repeat;
 }
 
 .hero-overlay {
@@ -27,29 +28,12 @@
 }
 
 .hero-content h1 {
-  font-size: 3rem;
+  font-size: 54px;
   font-weight: bold;
   margin-bottom: 1rem;
   letter-spacing: 2px;
 }
 
-.breadcrumb {
-  font-size: 1rem;
-}
-
-.breadcrumb-home {
-  color: #d1d5db;
-}
-
-.breadcrumb-separator {
-  margin: 0 0.5rem;
-  color: #d1d5db;
-}
-
-.breadcrumb-current {
-  color: #ff8c00;
-  font-weight: 500;
-}
 
 /* Content Wrapper */
 .content-wrapper {

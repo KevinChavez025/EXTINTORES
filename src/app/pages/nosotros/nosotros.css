@@ -21,19 +21,12 @@
 }
 
 .banner-content h1 {
-  font-size: 42px;
+  font-size: 54px;
   font-weight: 700;
   margin-bottom: 10px;
 }
 
-.banner-content p {
-  font-size: 14px;
-  color: #ddd;
-}
 
-.banner-content span {
-  color: #f28c0f;
-}
 
 /* ===== CONTENIDO ===== */
 .nosotros-container {
