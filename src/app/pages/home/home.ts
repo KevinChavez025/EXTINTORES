@@ -1,44 +1,40 @@
-import { Component, Inject, PLATFORM_ID, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.css'
 })
 export class HomeComponent implements OnInit, OnDestroy {
+
   activeSlide = 0;
-  private intervalId: any;
+  private interval: any;
+  private emailjs: any;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object) {}
+  form = { nombre: '', email: '', telefono: '', mensaje: '' };
+  enviando = false;
+  mensajeExito = false;
+  mensajeError = false;
 
-  ngOnInit() {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  async ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.preloadImages([
-        'assets/Inicio/herosection.webp',
-        'assets/Inicio/herosection2.webp',
-        'assets/Inicio/catalogo.webp',
-        'assets/Inicio/fumigacion.webp',
-        'assets/Inicio/desinfeccion.webp',
-        'assets/Inicio/desinsectacion.webp',
-        'assets/Inicio/desratizacion.webp',
-      ]);
-
-      this.intervalId = setInterval(() => this.nextSlide(), 6000);
+      // Solo carga emailjs en el navegador, no en el servidor
+      const ejsModule = await import('@emailjs/browser');
+      this.emailjs = ejsModule.default;
+      this.emailjs.init('8FGkHEZ-X80u40cSq');
     }
+    this.interval = setInterval(() => this.nextSlide(), 5000);
   }
 
   ngOnDestroy() {
-    if (this.intervalId) clearInterval(this.intervalId);
-  }
-
-  private preloadImages(urls: string[]) {
-    urls.forEach((url) => {
-      const img = new Image();
-      img.src = url;
-    });
+    clearInterval(this.interval);
   }
 
   nextSlide() {
@@ -51,5 +47,35 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   goTo(index: number) {
     this.activeSlide = index;
+  }
+
+  async enviarMensaje() {
+    if (!this.form.nombre || !this.form.email || !this.form.mensaje) {
+      alert('Por favor completa los campos obligatorios.');
+      return;
+    }
+
+    if (!this.emailjs) return;
+
+    this.enviando = true;
+    this.mensajeExito = false;
+    this.mensajeError = false;
+
+try {
+  await this.emailjs.send('service_4xnpcyf', 'template_4swwssk', {
+    nombre: this.form.nombre,
+    email: this.form.email,
+    telefono: this.form.telefono,
+    mensaje: this.form.mensaje
+  });
+  this.enviando = false;
+  this.mensajeExito = true;
+  this.form = { nombre: '', email: '', telefono: '', mensaje: '' };
+  setTimeout(() => this.mensajeExito = false, 5000);
+} catch {
+  this.enviando = false;
+  this.mensajeError = true;
+  setTimeout(() => this.mensajeError = false, 5000);
+}
   }
 }

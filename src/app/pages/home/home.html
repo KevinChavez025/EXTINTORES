@@ -127,33 +127,36 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
-  <section class="contact">
-    <div class="container contact__wrap">
-      <h2 class="section-title">ENVÍENOS UN MENSAJE</h2>
-      <p class="section-subtitle">Responderemos a su mensaje lo antes posible.</p>
+<!-- CONTACTO -->
+<section class="contact">
+  <div class="container contact__wrap">
+    <h2 class="section-title">ENVÍENOS UN MENSAJE</h2>
+    <p class="section-subtitle">Responderemos a su mensaje lo antes posible.</p>
 
-      <form class="contact__form">
-        <div class="row">
-          <input type="text" placeholder="Nombre" />
-          <input type="email" placeholder="Correo" />
-        </div>
+    <form class="contact__form">
+      <div class="row">
+        <input type="text" [(ngModel)]="form.nombre" name="nombre" placeholder="Nombre" />
+        <input type="email" [(ngModel)]="form.email" name="email" placeholder="Correo" />
+      </div>
 
-        <div class="row">
-          <input type="tel" placeholder="Teléfono" class="full" />
-        </div>
+      <div class="row">
+        <input type="tel" [(ngModel)]="form.telefono" name="telefono" placeholder="Teléfono" class="full" />
+      </div>
 
-        <div class="row">
-          <textarea placeholder="Mensaje"></textarea>
-        </div>
+      <div class="row">
+        <textarea [(ngModel)]="form.mensaje" name="mensaje" placeholder="Mensaje" rows="6" class="full"></textarea>
+      </div>
 
-        <button type="button" class="btn btn--dark">ENVIAR</button>
-      </form>
-    </div>
-  </section>
+      <button type="button" class="btn btn--send" (click)="enviarMensaje()" [disabled]="enviando">
+        {{ enviando ? 'ENVIANDO...' : 'ENVIAR' }}
+      </button>
 
-</main>
-
-
-
-
+      <p *ngIf="mensajeExito" style="color: green; text-align:center; font-weight:600;">
+        ✅ ¡Mensaje enviado correctamente!
+      </p>
+      <p *ngIf="mensajeError" style="color: red; text-align:center; font-weight:600;">
+        ❌ Error al enviar. Intenta de nuevo.
+      </p>
+    </form>
+  </div>
+</section>
