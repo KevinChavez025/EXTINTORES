@@ -25,10 +25,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      // Solo carga emailjs en el navegador, no en el servidor
-      const ejsModule = await import('@emailjs/browser');
-      this.emailjs = ejsModule.default;
-      this.emailjs.init('8FGkHEZ-X80u40cSq');
+      try {
+        const ejsModule = await import('@emailjs/browser');
+        this.emailjs = ejsModule.default;
+        this.emailjs.init('8FGkHEZ-X80u40cSq');
+      } catch (e) {
+        console.error('No se pudo cargar EmailJS:', e);
+      }
     }
     this.interval = setInterval(() => this.nextSlide(), 5000);
   }
@@ -55,27 +58,33 @@ export class HomeComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (!this.emailjs) return;
+    if (!isPlatformBrowser(this.platformId) || !this.emailjs) {
+      this.mensajeError = true;
+      setTimeout(() => this.mensajeError = false, 5000);
+      return;
+    }
 
     this.enviando = true;
     this.mensajeExito = false;
     this.mensajeError = false;
 
-try {
-  await this.emailjs.send('service_4xnpcyf', 'template_4swwssk', {
-    nombre: this.form.nombre,
-    email: this.form.email,
-    telefono: this.form.telefono,
-    mensaje: this.form.mensaje
-  });
-  this.enviando = false;
-  this.mensajeExito = true;
-  this.form = { nombre: '', email: '', telefono: '', mensaje: '' };
-  setTimeout(() => this.mensajeExito = false, 5000);
-} catch {
-  this.enviando = false;
-  this.mensajeError = true;
-  setTimeout(() => this.mensajeError = false, 5000);
-}
+    try {
+      await this.emailjs.send('service_4xnpcyf', 'template_x5vikgb', {
+        nombre: this.form.nombre,
+        email: this.form.email,
+        telefono: this.form.telefono,
+        mensaje: this.form.mensaje,
+        name: this.form.nombre,
+      }, '8FGkHEZ-X80u40cSq');
+      this.enviando = false;
+      this.mensajeExito = true;
+      this.form = { nombre: '', email: '', telefono: '', mensaje: '' };
+      setTimeout(() => this.mensajeExito = false, 5000);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      this.enviando = false;
+      this.mensajeError = true;
+      setTimeout(() => this.mensajeError = false, 5000);
+    }
   }
 }

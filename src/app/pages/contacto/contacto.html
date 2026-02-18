@@ -12,6 +12,18 @@
     </div>
   </div>
 
+  <!-- Modal de validación -->
+  <div class="modal-validacion" *ngIf="mostrarModalError" (click)="cerrarModalError()">
+    <div class="modal-validacion-contenido" (click)="$event.stopPropagation()">
+      <div class="modal-icono">⚠️</div>
+      <h3>Completa el formulario</h3>
+      <ul class="modal-errores-lista">
+        <li *ngFor="let error of listaErrores">{{ error }}</li>
+      </ul>
+      <button class="modal-btn-cerrar" (click)="cerrarModalError()">Entendido</button>
+    </div>
+  </div>
+
   <!-- Content Section -->
   <div class="content-wrapper">
     <div class="content-grid">
@@ -22,43 +34,68 @@
 
         <div class="contact-form">
           <div class="form-row">
-            <input
-              type="text"
-              [(ngModel)]="contacto.nombre"
-              name="nombre"
-              placeholder="Nombre"
-              required
-              class="form-input"
-            />
-            <input
-              type="email"
-              [(ngModel)]="contacto.email"
-              name="email"
-              placeholder="Correo"
-              required
-              class="form-input"
-            />
+            <div class="field-group">
+              <input
+                type="text"
+                [(ngModel)]="contacto.nombre"
+                name="nombre"
+                placeholder="Nombre"
+                class="form-input"
+                [class.input-error]="errores.nombre"
+              />
+              <span class="field-error" *ngIf="errores.nombre">{{ errores.nombre }}</span>
+            </div>
+            <div class="field-group">
+              <input
+                type="email"
+                [(ngModel)]="contacto.email"
+                name="email"
+                placeholder="Correo"
+                class="form-input"
+                [class.input-error]="errores.email"
+              />
+              <span class="field-error" *ngIf="errores.email">{{ errores.email }}</span>
+            </div>
           </div>
 
-          <input
-            type="tel"
-            [(ngModel)]="contacto.telefono"
-            name="telefono"
-            placeholder="Teléfono"
-            required
-            class="form-input"
-          />
+          <div class="field-group">
+            <input
+              type="tel"
+              [(ngModel)]="contacto.telefono"
+              name="telefono"
+              placeholder="Teléfono"
+              class="form-input"
+              [class.input-error]="errores.telefono"
+            />
+            <span class="field-error" *ngIf="errores.telefono">{{ errores.telefono }}</span>
+          </div>
 
-          <textarea
-            [(ngModel)]="contacto.mensaje"
-            name="mensaje"
-            placeholder="Mensaje"
-            required
-            rows="6"
-            class="form-textarea"
-          ></textarea>
+          <div class="field-group">
+            <textarea
+              [(ngModel)]="contacto.mensaje"
+              name="mensaje"
+              placeholder="Mensaje"
+              rows="6"
+              class="form-textarea"
+              [class.input-error]="errores.mensaje"
+            ></textarea>
+            <span class="field-error" *ngIf="errores.mensaje">{{ errores.mensaje }}</span>
+          </div>
 
-          <button (click)="enviarContacto($event)" class="btn-submit">ENVIAR</button>
+          <button
+            (click)="enviarContacto($event)"
+            class="btn-submit"
+            [disabled]="enviando"
+          >
+            {{ enviando ? 'ENVIANDO...' : 'ENVIAR' }}
+          </button>
+
+          <p *ngIf="enviado" class="form-success">
+            ✔ ¡Mensaje enviado correctamente!
+          </p>
+          <p *ngIf="errorEnvio" class="form-error-msg">
+            ✖ Error al enviar. Intenta de nuevo.
+          </p>
         </div>
       </div>
 
@@ -74,9 +111,7 @@
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
             </div>
-            <div class="info-text">
-              <p>064 636 965</p>
-            </div>
+            <div class="info-text"><p>064 636 965</p></div>
           </div>
 
           <div class="info-item">
@@ -85,9 +120,7 @@
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
             </div>
-            <div class="info-text">
-              <p>948 768 989 / 986 045 473</p>
-            </div>
+            <div class="info-text"><p>948 768 989 / 986 045 473</p></div>
           </div>
 
           <div class="info-item">
@@ -97,9 +130,7 @@
                 <polyline points="22,6 12,13 2,6"></polyline>
               </svg>
             </div>
-            <div class="info-text">
-              <p>contacto@extintoresjr.com</p>
-            </div>
+            <div class="info-text"><p>contacto@extintoresjr.com</p></div>
           </div>
 
           <div class="info-item">
@@ -110,10 +141,7 @@
               </svg>
             </div>
             <div class="info-text">
-              <p>
-                Jr. La Victoria N° 605, El Tambo<br />
-                Esquina con Huancavelica
-              </p>
+              <p>Jr. La Victoria N° 605, El Tambo<br />Esquina con Huancavelica</p>
             </div>
           </div>
 
@@ -124,13 +152,13 @@
   </div>
 
   <!-- WhatsApp Button -->
-  <div class="whatsapp-btn" (click)="enviarContacto($event)">
+  <a href="https://wa.me/51948768989" target="_blank" class="whatsapp-btn">
     <svg width="32" height="32" fill="currentColor" viewBox="0 0 24 24">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
-  </div>
+  </a>
 
-  <!-- Modal del Mapa - ESTO ES LO QUE FALTA -->
+  <!-- Modal del Mapa -->
   <div class="mapa-modal" *ngIf="mostrarMapaModal" (click)="cerrarMapa()">
     <div class="mapa-modal-contenido" (click)="$event.stopPropagation()">
       <button class="mapa-modal-cerrar" (click)="cerrarMapa()">×</button>
