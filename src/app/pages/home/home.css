@@ -3,15 +3,25 @@
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* --- ANIMACIONES DE HOVER Y ESTADO (Sin ocultar elementos) --- */
+/* --- ANIMACIONES --- */
 @keyframes pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.05); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+@keyframes slideFromTop {
+  from { opacity: 0; transform: translateY(-60px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoomIn {
+  from { opacity: 0; transform: scale(1.08); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 /* --- ESTRUCTURA GENERAL --- */
@@ -87,26 +97,26 @@
 .hero__slides {
   height: 100%;
   display: flex;
-  transition: transform .6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .hero__slide {
   position: relative;
   min-width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
+/* PARALLAX - imagen se mueve más lento que el scroll */
 .hero__bg {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100%;
+  height: 120%; /* más alta para dar espacio al parallax */
+  top: -10%;
   object-fit: cover;
-  transition: transform 0.5s ease-out;
-}
-
-.hero__slide:hover .hero__bg {
-  transform: scale(1.05);
+  will-change: transform;
+  transition: transform 0.1s linear;
 }
 
 .hero__overlay {
@@ -115,6 +125,11 @@
   background: linear-gradient(90deg, rgba(0,0,0,.68), rgba(0,0,0,.30), rgba(0,0,0,.10));
 }
 
+.hero__overlay--soft {
+  background: linear-gradient(90deg, rgba(0,0,0,.55), rgba(0,0,0,.20), rgba(0,0,0,.05));
+}
+
+/* Animación del contenido al cambiar slide */
 .hero__content {
   position: relative;
   z-index: 2;
@@ -126,6 +141,7 @@
   justify-content: center;
   gap: 14px;
   color: #fff;
+  animation: fadeInUp 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .hero__title {
@@ -142,31 +158,65 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
+.hero__kicker  { animation: slideFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s both; }
+.hero__title   { animation: slideFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both; }
+.hero__desc, .hero__list { animation: slideFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both; }
+.hero__actions { animation: slideFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both; }
+
 /* Flechas Hero */
 .hero__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.35);
-  background: rgba(0,0,0,.35);
+  border: 2px solid rgba(255,255,255,.5);
+  background: rgba(0,0,0,.3);
   color: #fff;
   font-size: 28px;
   cursor: pointer;
   z-index: 3;
   transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(6px);
 }
 
 .hero__arrow:hover {
   background: rgba(246, 164, 0, 0.9);
   border-color: #f6a400;
+  transform: translateY(-50%) scale(1.1);
 }
 
-.hero__arrow--left { left: 16px; }
-.hero__arrow--right { right: 16px; }
+.hero__arrow--left { left: 20px; }
+.hero__arrow--right { right: 20px; }
+
+/* Dots */
+.hero__dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.6);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot--active {
+  background: #f6a400;
+  border-color: #f6a400;
+  width: 28px;
+}
 
 /* --- CATALOGO --- */
 .catalog {
@@ -269,6 +319,13 @@
   color: #fff;
 }
 
+.services__title {
+  font-size: clamp(24px, 3vw, 40px);
+  font-weight: 800;
+  margin: 0 0 32px;
+  letter-spacing: 1px;
+}
+
 .services__cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -312,6 +369,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 /* --- CONTACT --- */
 .contact {
   padding: 80px 0;
@@ -390,6 +448,28 @@ input:focus, textarea:focus {
   box-shadow: 0 10px 25px rgba(246, 164, 0, 0.35);
 }
 
+/* --- SCROLL REVEAL --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reveal.reveal--left { transform: translateX(-60px); }
+.reveal.reveal--right { transform: translateX(60px); }
+.reveal.reveal--scale { transform: scale(0.85); }
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
+
+.reveal-group .reveal:nth-child(1) { transition-delay: 0s; }
+.reveal-group .reveal:nth-child(2) { transition-delay: 0.15s; }
+.reveal-group .reveal:nth-child(3) { transition-delay: 0.30s; }
+.reveal-group .reveal:nth-child(4) { transition-delay: 0.45s; }
+
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
   .catalog__grid { grid-template-columns: 1fr; }
@@ -399,49 +479,9 @@ input:focus, textarea:focus {
   .hero__arrow { display: none; }
 }
 
-/* --- ANIMACIÓN VERTICAL HERO --- */
-@keyframes slideFromTop {
-  from {
-    opacity: 0;
-    transform: translateY(-60px); /* Viene de arriba */
+@media (max-width: 600px) {
+  .reveal.reveal--left,
+  .reveal.reveal--right {
+    transform: translateY(40px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* --- ANIMACIÓN VERTICAL HERO --- */
-@keyframes slideFromTop {
-  from {
-    opacity: 0;
-    transform: translateY(-60px); /* Viene de arriba */
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Aplicamos la animación a los hijos del contenido */
-.hero__content > * {
-  opacity: 0; /* Estado inicial para que no parpadee */
-  animation: slideFromTop 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-/* Escalonamiento (Stagger) de los elementos */
-.hero__kicker  { animation-delay: 0.1s; }
-.hero__title   { animation-delay: 0.3s; }
-.hero__desc, .hero__list { animation-delay: 0.5s; }
-.hero__actions { animation-delay: 0.7s; }
-
-/* Transición suave para el contenedor del slider */
-.hero__slides {
-  display: flex;
-  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
-}
-
-/* Evita que el overflow rompa la sección */
-.hero--slider {
-  position: relative;
-  overflow: hidden;
 }

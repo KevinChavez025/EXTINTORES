@@ -114,3 +114,35 @@
 }
 
 .card-text p { color: #777; font-size: 0.9rem; line-height: 1.3; }
+@media (max-width: 900px) {
+  .info-section {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .main-title {
+    font-size: 1.8rem;
+  }
+
+  .btn-whatsapp {
+    width: 80%;
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 20px 14px;
+  }
+
+  .main-title {
+    font-size: 1.4rem;
+  }
+
+  .btn-whatsapp {
+    width: 100%;
+  }
+}

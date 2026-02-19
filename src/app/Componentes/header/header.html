@@ -3,56 +3,36 @@
 
     <!-- IZQUIERDA: LOGO + NOMBRE -->
     <div class="header-left">
-      <img
-        src="extintores.jpg"
-        alt="FUMIEXTIN FIRE PERÚ"
-        class="logo"
-      >
+      <img src="extintores.jpg" alt="FUMIEXTIN FIRE PERÚ" class="logo">
       <span class="company-name">FUMIEXTIN FIRE PERÚ</span>
     </div>
 
-    <!-- CENTRO: NAVBAR -->
+    <!-- CENTRO: NAVBAR (escritorio) -->
     <nav class="header-center">
-      <a
-        routerLink="/home"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-        class="nav-link"
-      >
-        INICIO
-      </a>
-
-      <a
-        routerLink="/nosotros"
-        routerLinkActive="active"
-        class="nav-link"
-      >
-        NOSOTROS
-      </a>
-
-      <a
-        routerLink="/servicios"
-        routerLinkActive="active"
-        class="nav-link"
-      >
-        SERVICIOS
-      </a>
-
-      <a
-        routerLink="/productos"
-        routerLinkActive="active"
-        class="nav-link"
-      >
-        PRODUCTOS
-      </a>
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">INICIO</a>
+      <a routerLink="/nosotros" routerLinkActive="active" class="nav-link">NOSOTROS</a>
+      <a routerLink="/servicios" routerLinkActive="active" class="nav-link">SERVICIOS</a>
+      <a routerLink="/productos" routerLinkActive="active" class="nav-link">PRODUCTOS</a>
     </nav>
 
-    <!-- DERECHA: BOTÓN -->
+    <!-- DERECHA: BOTÓN + HAMBURGUESA -->
     <div class="header-right">
-      <a routerLink="/contacto" class="cta">
-        CONTÁCTENOS
-      </a>
+      <a routerLink="/contacto" class="cta">CONTÁCTENOS</a>
+      <button class="hamburger" (click)="toggleMenu()" [class.hamburger--open]="menuAbierto" aria-label="Menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
 
   </div>
+
+  <!-- MENÚ MÓVIL -->
+  <nav class="mobile-menu" [class.mobile-menu--open]="menuAbierto">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="mobile-link" (click)="cerrarMenu()">INICIO</a>
+    <a routerLink="/nosotros" routerLinkActive="active" class="mobile-link" (click)="cerrarMenu()">NOSOTROS</a>
+    <a routerLink="/servicios" routerLinkActive="active" class="mobile-link" (click)="cerrarMenu()">SERVICIOS</a>
+    <a routerLink="/productos" routerLinkActive="active" class="mobile-link" (click)="cerrarMenu()">PRODUCTOS</a>
+    <a routerLink="/contacto" class="mobile-link mobile-link--cta" (click)="cerrarMenu()">CONTÁCTENOS</a>
+  </nav>
 </header>

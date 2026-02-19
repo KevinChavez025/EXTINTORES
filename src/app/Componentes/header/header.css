@@ -14,7 +14,6 @@
   background-color: #ffffff;
 }
 
-
 /* GRID PARA CENTRADO PERFECTO */
 .topbar__inner {
   max-width: 1600px;
@@ -67,7 +66,6 @@
   color: #f28a1a;
 }
 
-/* ACTIVO (ANGULAR) */
 .nav-link.active {
   color: #f28a1a;
 }
@@ -86,7 +84,9 @@
 /* DERECHA */
 .header-right {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 12px;
 }
 
 .cta {
@@ -105,10 +105,105 @@
   transform: translateY(-2px);
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .header-center {
-    display: none;
-  }
+/* HAMBURGUESA */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
+.hamburger:hover {
+  background: rgba(242,138,26,0.1);
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #111;
+  border-radius: 3px;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.hamburger--open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.hamburger--open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger--open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* MENÚ MÓVIL */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu--open { max-height: 400px; }
+
+.mobile-link {
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #111;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f5f5f5;
+  transition: all 0.2s ease;
+}
+
+.mobile-link:hover,
+.mobile-link.active {
+  color: #f28a1a;
+  background: rgba(242,138,26,0.05);
+  padding-left: 32px;
+}
+
+.mobile-link--cta {
+  background: #f28a1a;
+  color: #fff;
+  text-align: center;
+  margin: 12px 16px;
+  border-radius: 50px;
+  border-bottom: none;
+  padding: 14px 24px;
+}
+
+.mobile-link--cta:hover {
+  background: #d47a10;
+  color: #fff;
+  padding-left: 24px;
+}
+
+/* ===== RESPONSIVE — SIEMPRE AL FINAL ===== */
+@media (max-width: 900px) {
+  .header-center { display: none; }
+  .cta { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
+}
+@media (max-width: 480px) {
+  .company-name {
+    font-size: 16px;
+  }
+  .logo {
+    width: 40px;
+  }
+  .topbar__inner {
+    padding: 0 12px;
+  }
+  .header-left {
+    gap: 10px;
+    padding-right: 10px;
+  }
+}
